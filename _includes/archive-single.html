@@ -40,6 +40,8 @@
 
         {% if post.collection == 'teaching' %}
           <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+        {% elsif post.collection == 'publications' and post.venue contains "Accepted" %}
+          <p>Venue: <i>{{ post.venue }}</i></p>
         {% elsif post.collection == 'publications' %}
           <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif post.date %}
@@ -76,5 +78,8 @@
       </p>
     {% endif %}
 
+    {% if post.code_status and post.codeurl == empty %}
+      <p style="font-size: smaller">Code status: {{ post.code_status }}</p>
+    {% endif %}
   </article>
 </div>
