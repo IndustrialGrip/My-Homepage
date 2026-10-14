@@ -36,6 +36,8 @@ layout: default
         
         {% if page.collection == 'teaching' %}
           <p> {{ page.type }}, <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
+        {% elsif page.venue contains "Accepted" %}
+          <p>Venue: <i>{{ page.venue }}</i></p>
         {% elsif page.venue and page.date %}
           <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif page.date %}
@@ -69,6 +71,9 @@ layout: default
           </p>
         {%- endif -%}
 
+        {% if page.code_status and page.codeurl == empty %}
+          <p style="font-size: smaller">Code status: {{ page.code_status }}</p>
+        {% endif %}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 
